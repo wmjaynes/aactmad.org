@@ -1,0 +1,50 @@
+////////////////////////////////////////////////
+// SPACELAB
+////////////////////////////////////////////////
+$grey-darker:  #2d2d2d;
+$grey-dark:    #333;
+$grey:         #777;
+$grey-light:   #ccc;
+$grey-lighter: #eee;
+
+$orange:       #D47500;
+$green:        #3CB521;
+$green: #d2e7d2;
+$green-invert:  #000;
+$blue:         #3399F3;
+$blue-invert:  #000;
+$red:          #CD0200;
+$brown:        #F3D9B3;
+$brown-invert: #000;
+$dark-brown:   #6E6102;
+
+$sage-soft:   #c3cba9;
+$sage-light:  #D0D8A5;
+$sage-lighter:  #E5EEB6;
+$sage-hazy:   #b2b396;
+
+$primary: #446E9B !default;
+$warning: $orange;
+$warning-invert: #fff;
+//$link: #807f7f;
+
+$blue-light: #9fd8fb;
+$blue-light: #CBEAFB;
+
+//$info: darken($brown, 10%);
+//$info-invert: $brown-invert;
+$info: $green;
+$info-invert: $green-invert;
+
+$link: darken($info, 35%);
+//$card-header-background-color: lighten($info, 15%);
+//$card-header-background-color: lighten($info, 5%);
+
+$family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$family-serif: "Crimson Text", serif;
+$family-primary: $family-serif !default
+
+$subtitle-color: $grey;
+
+$navbar-item-active-color: $primary;
+$navbar-item-hover-background-color: transparent;

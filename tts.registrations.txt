@@ -1,0 +1,77 @@
+
+
+----------------  -------------
+Count 2 
+stdClass Object
+(
+    [id] => 0
+    [name] => Will Jaynes
+    [email] => will@jaynes.org
+    [member] => 1
+    [street] => 2611 Meade Ct.
+    [city] => Ann Arbor
+    [state] => Michigan
+    [zip] => 48105
+    [under25] => 
+    [subTotalCost] => 75
+    [phone] => 7346638019
+)
+stdClass Object
+(
+    [id] => 0
+    [name] => Will Jaynes
+    [email] => will@jaynes.org
+    [member] => 1
+    [street] => 2611 Meade Ct.
+    [city] => Ann Arbor
+    [state] => Michigan
+    [zip] => 48105
+    [under25] => 
+    [subTotalCost] => 75
+    [phone] => 7346638019
+)
+stdClass Object
+(
+    [id] => 1
+    [name] => 
+    [email] => 
+    [member] => 
+    [street] => 2611 Meade Ct.
+    [city] => Ann Arbor
+    [state] => Michigan
+    [zip] => 48105
+    [under25] => 
+    [subTotalCost] => 80
+)
+[{"id":0,"name":"Will Jaynes","email":"will@jaynes.org","member":true,"street":"2611 Meade Ct.","city":"Ann Arbor","state":"Michigan","zip":"48105","under25":false,"subTotalCost":75,"phone":"7346638019"},{"id":1,"name":"","email":"","member":false,"street":"2611 Meade Ct.","city":"Ann Arbor","state":"Michigan","zip":"48105","under25":false,"subTotalCost":80}]
+
+----------------  -------------
+Count 2 
+Will JaynesstdClass Object
+(
+    [id] => 0
+    [name] => Will Jaynes
+    [email] => will@jaynes.org
+    [member] => 1
+    [street] => 2611 Meade Ct.
+    [city] => Ann Arbor
+    [state] => Michigan
+    [zip] => 48105
+    [under25] => 
+    [subTotalCost] => 75
+    [phone] => 7346638019
+)
+stdClass Object
+(
+    [id] => 1
+    [name] => 
+    [email] => 
+    [member] => 
+    [street] => 2611 Meade Ct.
+    [city] => Ann Arbor
+    [state] => Michigan
+    [zip] => 48105
+    [under25] => 
+    [subTotalCost] => 80
+)
+[{"id":0,"name":"Will Jaynes","email":"will@jaynes.org","member":true,"street":"2611 Meade Ct.","city":"Ann Arbor","state":"Michigan","zip":"48105","under25":false,"subTotalCost":75,"phone":"7346638019"},{"id":1,"name":"","email":"","member":false,"street":"2611 Meade Ct.","city":"Ann Arbor","state":"Michigan","zip":"48105","under25":false,"subTotalCost":80}]

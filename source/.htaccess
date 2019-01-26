@@ -1,0 +1,13 @@
+AddHandler server-parsed .html
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RedirectMatch 301 ^/events/ https://events.aactmad.org
+RedirectMatch 301 ^/concourse/ https://concoursehall.aactmad.org
+RedirectMatch 301 ^/support /membership/
+
+
+ErrorDocument 400 /404/index.html

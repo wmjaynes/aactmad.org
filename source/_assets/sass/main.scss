@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+
+@import "variables";
+
+@import "../../../node_modules/bulma/bulma";
+
+@import "../../../node_modules/bulmaswatch/spacelab/overrides";
+
+.event-header {
+  //@include btn-shadow($info);
+  @include btn-shadow(lighten($info, 5%));
+  border: 1px solid $info;
+}
+.event-header:hover {
+  @include btn-shadow(darken($info, 4%));
+}
+
+.has-background-info {
+  background-color: lighten($info, 5%) !important;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
+/*@import url('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css');*/
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Crimson Text", serif, serif;
+}
+
+.box {
+  margin-top: 0.5rem;
+  padding: .5rem;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar > .container .navbar-brand, .container > .navbar .navbar-brand {
+    margin-left: inherit;
+  }
+}
+
+.columns:last-child {
+  margin-bottom: 0;
+}
+/*.box:not(:last-child) {*/
+/*margin-bottom: 0;*/
+/*}*/
+
+.icon {
+  height: inherit;
+}
+.is-hidden {
+  display: none;
+}
+
+.navbar-item {
+  line-height: 1.2rem;
+}
+
+.navbar-item img {
+  max-height: 3.75rem;
+}
+
+.navbar {
+  margin-bottom: 0.25rem;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+img {
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+body {
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+}
+
+.card-content {
+  padding: 1.1rem 1.5rem
+}
+
+.subtitle {
+  line-height: 1.125;
+}
+
+.image-credit {
+  display: inline-block;
+  position: relative;
+  bottom: 1em;
+  left: 1em;
+  background-color: $info;
+  padding: 3px 3px;
+  width: fit-content;
+}
+.small-image-credit {
+  display: inline-block;
+  position: relative;
+  bottom: 1em;
+  left: 1em;
+  background-color: $info;
+  padding: 3px 3px;
+  width: fit-content;
+  font-size: 0.75em;
+}
+
+
