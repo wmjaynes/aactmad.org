@@ -2,8 +2,8 @@
 
 date_default_timezone_set('America/Detroit');
 
-$YEAR = '2018';
-$DATES = 'October 26 - 28';
+$YEAR = '2019';
+$DATES = 'October 25 - 27';
 
 $registrations = json_decode(file_get_contents('php://input'));
 

@@ -407,7 +407,6 @@
                 this.itemNumber = this.registrations[0].name + " - " + moment().format();
                 this.doLogging();
                 this.doMailToDancer();
-                return;
 
                 let paypalForm = document.getElementById('paypalForm');
                 let amount = document.getElementById('amount');

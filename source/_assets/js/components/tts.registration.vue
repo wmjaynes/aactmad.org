@@ -233,7 +233,7 @@
         name: "tts-registration",
         data() {
             return {
-                openRegistrationDate: moment('2018-08-01', 'YYYY-MM-DD'),
+                openRegistrationDate: moment('2019-08-01', 'YYYY-MM-DD'),
                 closeRegistrationDate: moment('2019-10-25 12', 'YYYY-MM-DD k'),
                 isBeforeRegistrationIsOpen: false,
                 isAfterRegistrationIsClosed: false,
