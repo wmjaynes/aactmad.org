@@ -92,7 +92,7 @@
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            Yearly Contra Dance Events
+                            Yearly Events with Contra Dance
                         </p>
                     </header>
                     <div class="card-content">

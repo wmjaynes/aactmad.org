@@ -22,7 +22,7 @@
 
                 <div id="venueNotice" class="notification is-danger is-invisible">
                     <p class="subtitle">NOTICE: Temporary Change of Venue</p>
-                    <p>January - February 2019<br>
+                    <p>January - March 2019<br>
                         Gretchen's House Child Care Center Oak Valley, 2340 Oak Valley Drive, Ann Arbor MI, 48103</p>
                     <a href="https://goo.gl/maps/HrkfeM5qfws" target="_blank">MAP</a>
                 </div>
@@ -136,7 +136,7 @@
         let nthyear = document.getElementById('nthyear');
         nthyear.innerHTML = diffStr;
 
-        let end = moment('2019-03-01', 'YYYY-MM-DD');
+        let end = moment('2019-04-01', 'YYYY-MM-DD');
         let element = document.getElementById("venueNotice");
         if (now.isBefore(end))
             element.classList.remove('is-invisible');

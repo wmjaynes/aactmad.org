@@ -374,7 +374,7 @@
                     Registrations: this.registrations,
                 }
             },
-            doLogging() {
+            async doLogging() {
                 let log = {
                     secret: 'iamthebossofaactmad',
                     logfile: 'melt.into.spring.txt',
@@ -382,23 +382,19 @@
                 };
                 // console.log(JSON.stringify(log));
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                try {
+                    await axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
+                } catch (e) {
+                    console.log(e);
+                }
             },
-            doMailToDancer() {
+            async doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('/melt-into-spring/reg.email.php', this.registrations, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                try {
+                    await axios.post('/melt-into-spring/reg.email.php', this.registrations, {headers: headers});
+                } catch (e) {
+                    console.log(e);
+                }
             },
             processRegistration() {
                 if (!confirm("Proceed to PayPal?"))

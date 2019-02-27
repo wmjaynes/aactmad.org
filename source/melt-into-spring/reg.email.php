@@ -87,6 +87,7 @@ foreach ($registrations as $reg) {
     $amtdue = $reg->total;
 
     $subject = $testing."Melt Into Spring ".$YEAR." registration";
+    $to = $reg->email;
 
     $message = <<<EOD
 $testing $testing

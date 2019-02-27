@@ -57,20 +57,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            Yearly English Country Dance Events
-                        </p>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <ul>
-                                <li><a href=""><strong>Melt into Spring English Ball</strong></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="card">
                     <header class="card-header">

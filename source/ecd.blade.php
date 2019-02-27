@@ -50,13 +50,14 @@
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            Yearly English Country Dance Events
+                            Yearly Events with English Country Dance
                         </p>
                     </header>
                     <div class="card-content">
                         <div class="content">
                             <ul>
                                 <li><a href="/melt-into-spring"><strong>Melt into Spring English Ball</strong></a></li>
+                                <li><a href="/dits"><strong>Dancing in the Streets</strong></a></li>
                             </ul>
                         </div>
                     </div>

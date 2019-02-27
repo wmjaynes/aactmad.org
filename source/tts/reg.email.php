@@ -75,6 +75,8 @@ foreach ($registrations as $reg) {
 
 
     $subject = $testing."Tree Town Stomp ".$YEAR." registration";
+    $to = $reg->email;
+
     $message = <<<EOD
 $testing $testing
 Hello {$name},
