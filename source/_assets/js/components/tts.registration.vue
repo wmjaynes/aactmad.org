@@ -175,15 +175,15 @@
 
             <div class="hidden">
                 <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <input type="hidden" name="cmd" value="_xclick">
-
-                    <input type="hidden" id="amount" name="amount" value="10">
                     <input type="hidden" name="item_name" value="Tree Town Stomp 2019 Registration"/>
-                    <input type="hidden" id="item_number" name="item_number" value="123456"/>
-
-                    <input type="hidden" name="business" value="paypal@aactmad.org"/>
                     <input type="hidden" name="return" value="https://aactmad.org/tts"/>
                     <input type="hidden" name="cancel_return" value="https://aactmad.org/tts"/>
+                    <input type="hidden" name="notify_url" value="https://assets.aactmad.org/paypal/ipn.php" />
+
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" id="amount" name="amount" value="10">
+                    <input type="hidden" id="item_number" name="item_number" value="123456"/>
+                    <input type="hidden" name="business" value="paypal@aactmad.org"/>
                     <input type="hidden" name="rm" value="2"/>
                     <input type="hidden" name="currency_code" value="USD">
                     <input type="submit" value="Pay with PayPal"/>
@@ -233,7 +233,7 @@
         name: "tts-registration",
         data() {
             return {
-                openRegistrationDate: moment('2019-08-01', 'YYYY-MM-DD'),
+                openRegistrationDate: moment('2019-05-01', 'YYYY-MM-DD'),
                 closeRegistrationDate: moment('2019-10-25 12', 'YYYY-MM-DD k'),
                 isBeforeRegistrationIsOpen: false,
                 isAfterRegistrationIsClosed: false,
@@ -294,50 +294,56 @@
             removeReg(reg) {
                 this.registrations.splice(findIndex(this.registrations, r => r.id == reg.$model.id), 1);
             },
+
             testPost() {
                 this.doLogging();
                 this.doMailToDancer();
+            },
+            assembleMessage() {
+                return {
+                    ItemNumber: this.itemNumber,
+                    Total: this.totalCost,
+                    Registrations: this.registrations,
+                }
             },
             doLogging() {
                 let log = {
                     secret: 'iamthebossofaactmad',
                     logfile: 'tts.registrations.txt',
-                    message: this.registrations
+                    message: this.assembleMessage(),
                 };
-                // console.log(JSON.stringify(log));
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
             },
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('/tts/reg.email.php', this.registrations, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return axios.post('/tts/reg.email.php', this.registrations, {headers: headers});
+            },
+            submitToPayPal() {
+                let paypalForm = document.getElementById('paypalForm');
+
+                paypalForm.submit();
             },
             processRegistration() {
                 if (!confirm("Proceed to PayPal?"))
                     return;
 
-                this.doLogging();
-                this.doMailToDancer();
+                this.itemNumber = moment().valueOf();
 
-                let paypalForm = document.getElementById('paypalForm');
-                let amount = document.getElementById('amount');
-                amount.value = this.total;
-                let item_number = document.getElementById('item_number');
-                item_number.value = this.registrations[0].name + " " + new Date().toLocaleString();
-                paypalForm.submit();
-            }
+                let amount_field = document.getElementById('amount');
+                amount_field.value = this.total;
+                let item_number_field = document.getElementById('item_number');
+                item_number_field.value = this.itemNumber;
+
+                let log = this.doLogging();
+                let mail = this.doMailToDancer();
+
+                Promise.all([log, mail])
+                    .then(() => this.submitToPayPal())
+                    .catch(error => {
+                        console.log(error.message)
+                    });
+            },
         }
     }
 

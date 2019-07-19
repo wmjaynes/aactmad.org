@@ -1,4 +1,11 @@
 <?php
+require 'env.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+use Mailgun\Mailgun;
+
+$mailgun = Mailgun::create(getenv('MAILGUN_API_KEY'));
+$domain = "mg.aactmad.org";
 
 date_default_timezone_set('America/Detroit');
 
@@ -16,6 +23,10 @@ if ($serverName != "aactmad.org") {
 
 $ts = date("Y-m-d H:i:s");
 
+
+//Your credentials
+
+
 $adminEmail = [
     "contra" => "hellmann@umich.edu",
     "english" => "ecd@aactmad.org",
@@ -30,6 +41,7 @@ foreach ($lists as $list) {
     $plists .= $list . "\n";
 }
 $too .= "will@jaynes.org";
+//$too = "will@jaynes.org";
 
 $message = <<<EOD
 $testing $testing $testing $testing $testing
@@ -46,17 +58,16 @@ $testing $testing $testing $testing $testing
 
 EOD;
 
-$fromemail = "do.not.reply@aactmad.org";
-$fromname = "AACTMAD Email Lists";
-$subject = $testing."AACTMAD Email List Subscription";
 
-$headers = "From: ".$fromname." <".$fromemail.">\r\n";
-$headers .= "Reply-To: ".$fromname." <".$fromemail.">\r\n";
-$headers .= "X-Mailer: PHP/".phpversion();
+$mailed = true;
 
-$mailed = false;
 try {
-    $mailed = mail($too,$subject,$message,$headers);
+    $mailgun->messages()->send($domain, [
+        'from' => 'AACTMAD Email Lists <do.not.reply@aactmad.org>',
+        'to' => $too,
+        'subject' => 'AACTMAD Email List Subscription',
+        'text' => $message
+    ]);
 } catch (Exception $e) {
     $mailed = false;
 }
@@ -68,7 +79,7 @@ try {
     $regfile = 'email.lists.txt';
     $file = fopen($regfile, 'a');
     fwrite($file, "\n\n$testing-----------------------------\n");
-    if (! $mailed) {
+    if (!$mailed) {
         fwrite($file, "*****************************************************\n");
         fwrite($file, "****** Mail TO Email List Admins WAS NOT SUCCESSFULL ********\n");
         fwrite($file, "*****************************************************\n");
@@ -77,8 +88,6 @@ try {
     fclose($file);
 } catch (Exception $e) {
 }
-
-
 
 
 ?>

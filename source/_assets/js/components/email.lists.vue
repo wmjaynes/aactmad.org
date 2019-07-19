@@ -160,33 +160,27 @@
                     logfile: 'email.lists.txt',
                     message: this.assembleMessage(),
                 };
-                // console.log(JSON.stringify(log));
 
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
             },
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
                 let message = this.assembleMessage();
-                axios.post('/email.lists.email.php', message, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return axios.post('/email.lists.email.php', message, {headers: headers});
             },
             processMembership() {
-                this.doLogging();
-                this.doMailToDancer();
-                alert("Thank you. You have been subscribed.");
-                window.location.reload();
+                let log = this.doLogging();
+                let mail = this.doMailToDancer();
+
+                Promise.all([log, mail])
+                    .then(
+                        () => alert("Thank you. You have been subscribed.")
+                        )
+                    .catch(error => {
+                        console.log(error.message)
+                    });
+                // window.location.reload();
             }
         }
     }

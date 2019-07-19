@@ -26,7 +26,10 @@ mix
     .js('source/_assets/js/main.js', 'js')
     .js('source/_assets/js/vue.js', 'js')
     .js('source/_assets/js/coming.events.js', 'js')
+    .version()
 ;
+
+mix.copy('vendor/mailgun', 'vvvendor', false);
 
 if (mix.inProduction()) {
     mix.version();

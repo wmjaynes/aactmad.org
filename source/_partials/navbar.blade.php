@@ -4,6 +4,12 @@
             <img src="https://assets.aactmad.org/images/aactmad.logo.120x80.png"
                  alt="AACTMAD">
         </a>
+        <a class="navbar-item " href="/">
+            Home
+        </a>
+        <a class="navbar-item " href="/events/">
+            Events
+        </a>
         <a role="button" class="navbar-burger burger" data-target="main-navbar">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -12,12 +18,6 @@
     </div>
     <div id="main-navbar" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item " href="/">
-                Home
-            </a>
-            <a class="navbar-item " href="/events/">
-                Events
-            </a>
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">
                     Dance

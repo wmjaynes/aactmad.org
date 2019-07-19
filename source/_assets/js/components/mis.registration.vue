@@ -4,6 +4,8 @@
             Online registration opens: {{openRegistrationDate.format('MMM Do YYYY') }}.
             <br>
             Online registration closes after: {{ closeRegistrationDate.format('MMM Do YYYY') }}.
+            <br>
+            Dinner reservations are closed after: {{ closeDinnerDate.format('MMM Do YYYY') }}.
         </div>
         <div class="notification is-danger" v-if="(isBeforeRegistrationIsOpen)">
             Online registration is not yet open. Check back after {{ openRegistrationDate.format('MMM Do YYYY')
@@ -104,7 +106,8 @@
                                     <input type="checkbox"
                                            name="dinner"
                                            class="cost"
-                                           v-model="reg.$model.dinner">
+                                           v-model="reg.$model.dinner"
+                                           :disabled="dinnerIsClosed">
                                     Dinner
                                 </label>
                             </div>
@@ -240,12 +243,16 @@
     const FRIDAY = 15;
     const SATURDAY = 37;
 
+    const CLOSE_DINNER_DATE = moment('2019-03-14', 'YYYY-MM-DD');
+    const OPEN_REGISTRATION_DATE = moment('2019-01-01', 'YYYY-MM-DD');
+    const CLOSE_REGISTRATION_DATE = moment('2019-03-19', 'YYYY-MM-DD');
+
     class Registration {
         constructor() {
             this.id = 0;
             this.name = '';
             this.email = '';
-            this.dinner = true;
+            this.dinner = !moment().isAfter(CLOSE_DINNER_DATE, 'day');
             this.weekendDancing = true;
             this.student = false;
             this.friday = false;
@@ -290,10 +297,12 @@
         name: "mis-registration",
         data() {
             return {
-                openRegistrationDate: moment('2019-01-01', 'YYYY-MM-DD'),
-                closeRegistrationDate: moment('2019-03-14', 'YYYY-MM-DD'),
+                openRegistrationDate: OPEN_REGISTRATION_DATE,
+                closeRegistrationDate: CLOSE_REGISTRATION_DATE,
+                closeDinnerDate: CLOSE_DINNER_DATE,
                 isBeforeRegistrationIsOpen: false,
                 isAfterRegistrationIsClosed: false,
+                isAfterDinnerIsClosed: false,
                 uid: 0,
                 total: 0,
                 registrations: [],
@@ -333,10 +342,16 @@
             if (now.isAfter(this.closeRegistrationDate, 'day')) {
                 this.isAfterRegistrationIsClosed = true;
             }
+            if (now.isAfter(this.closeDinnerDate, 'day')) {
+                this.isAfterDinnerIsClosed = true;
+            }
         },
         computed: {
             registrationIsOpen() {
                 return !(this.isBeforeRegistrationIsOpen || this.isAfterRegistrationIsClosed);
+            },
+            dinnerIsClosed() {
+                return this.isAfterDinnerIsClosed;
             },
             totalCost: function () {
                 let total = this.registrations.reduce((acc, curr) => {
@@ -347,9 +362,6 @@
             },
         },
         methods: {
-            // moment() {
-            //     return moment();
-            // },
             addReg() {
                 let newReg = new Registration();
                 newReg.setId(this.uid++);
@@ -374,43 +386,41 @@
                     Registrations: this.registrations,
                 }
             },
-            async doLogging() {
+            doLogging() {
                 let log = {
                     secret: 'iamthebossofaactmad',
                     logfile: 'melt.into.spring.txt',
                     message: this.assembleMessage(),
                 };
-                // console.log(JSON.stringify(log));
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                try {
-                    await axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
-                } catch (e) {
-                    console.log(e);
-                }
+                return axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
             },
-            async doMailToDancer() {
+            doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                try {
-                    await axios.post('/melt-into-spring/reg.email.php', this.registrations, {headers: headers});
-                } catch (e) {
-                    console.log(e);
-                }
+                return axios.post('/melt-into-spring/reg.email.php', this.registrations, {headers: headers});
             },
-            processRegistration() {
-                if (!confirm("Proceed to PayPal?"))
-                    return;
-
-                this.itemNumber = this.registrations[0].name + " - " + moment().format();
-                this.doLogging();
-                this.doMailToDancer();
-
+            submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');
                 let amount = document.getElementById('amount');
                 amount.value = this.total;
                 let item_number = document.getElementById('item_number');
                 item_number.value = this.registrations[0].name + " " + new Date().toLocaleString();
                 paypalForm.submit();
-            }
+            },
+            processRegistration() {
+                if (!confirm("Proceed to PayPal?"))
+                    return;
+
+                this.itemNumber = this.registrations[0].name + " - " + moment().format();
+                let log = this.doLogging();
+                let mail = this.doMailToDancer();
+
+                Promise.all([log, mail])
+                    .then(() => this.submitToPayPal())
+                    .catch(error => {
+                        console.log(error.message)
+                    });
+            },
         },
         filters: {
             toCurrency: function(value) {

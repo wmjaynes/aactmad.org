@@ -18,11 +18,16 @@
 
                 <div class="box">
                     <div class="notification is-warning has-text-weight-bold has-text-centered">
+                        {{$page->labordaysunday()}}
+                    </div>
+
+                    <div class="notification is-warning has-text-weight-bold has-text-centered">
                         Kids, Adults, Families, Singles, Seniors, Students
                     </div>
 
+
                     <p class="notification is-warning has-text-weight-bold has-text-centered">
-                        <a href="schedule">Festival Schedule for 2018</a>
+                        <a href="schedule">Festival Schedule</a>
                     </p>
                 </div>
 

@@ -215,6 +215,7 @@
                 <input type="hidden" name="cancel_return" value="https://aactmad.org/membership" />
                 <input type="hidden" name="rm" value="2" />
                 <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="notify_url" value="https://assets.aactmad.org/paypal/ipn.php" />
                 <input type="submit" value="Pay with PayPal" />
                 <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
             </form>
@@ -329,40 +330,36 @@
                     logfile: 'membership.txt',
                     message: this.assembleMessage(),
                 };
-                // console.log(JSON.stringify(log));
 
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return axios.post('https://assets.aactmad.org/logger.php', log, {headers: headers});
             },
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
                 let message = this.assembleMessage();
-                axios.post('/membership.email.php', message, {headers: headers})
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-            processMembership() {
-                this.itemNumber = this.names[0].name + " - " + moment().format();
-                this.doLogging();
-                this.doMailToDancer();
 
+                return axios.post('/membership.email.php', message, {headers: headers});
+            },
+            submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');
                 let amount = document.getElementById('amount');
                 amount.value = this.totalCost;
                 let item_number = document.getElementById('item_number');
                 item_number.value = this.itemNumber;
                 paypalForm.submit();
-            }
+            },
+            processMembership() {
+                this.itemNumber = this.names[0].name + " - " + moment().format();
+
+                let log = this.doLogging();
+                let mail = this.doMailToDancer();
+
+                Promise.all([log, mail])
+                    .then(() => this.submitToPayPal())
+                    .catch(error => {
+                        console.log(error.message)
+                    });
+            },
         }
     }
 </script>

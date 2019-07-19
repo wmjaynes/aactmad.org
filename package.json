@@ -21,15 +21,14 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
-        "bulma": "^0.7.1",
-        "bulmaswatch": "^0.7.1",
+        "bulma": "^0.7.4",
+        "bulmaswatch": "^0.7.2",
         "jquery": "^3.3.1",
         "lodash.findindex": "^4.6.0",
-        "moment": "^2.22.2",
-        "query-string": "^6.1.0",
-        "vue": "^2.5.21",
-        "vue-paypal-checkout": "^3.1.3",
-        "vue-template-compiler": "^2.5.21",
+        "moment": "^2.24.0",
+        "query-string": "^6.4.0",
+        "vue": "^2.6.9",
+        "vue-template-compiler": "^2.6.9",
         "vuelidate": "^0.7.4"
     }
 }

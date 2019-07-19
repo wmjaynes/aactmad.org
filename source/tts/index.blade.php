@@ -65,22 +65,24 @@
         </nav>
 
         <div class="has-text-centered is-transparent title">
-            A full weekend of contra dance (and waltz)<br/>
-            Additional talent: TBA
+            A full weekend of contra dance (and waltz)
+        </div>
+        <div class="has-text-centered is-transparent subtitle has-text-weight-bold">
+            Additional talent: Glen Morningstar Jr. and Hotline Strings
         </div>
 
         <div class="box is-transparent margin20">
-            <p class="has-text-centered title is-3">Weekend Schedule 2018 (2019 will be similar)</p>
+            <p class="has-text-centered title is-3">Weekend Schedule</p>
             <div class="content">
                 <ul>
                     <li>Friday &mdash; 8&ndash;11:30pm &mdash; Wild Asparagus &amp; George Marshall</li>
                     <li>Saturday &mdash; Note: Lunch will be provided
                         <ul>
-                            <li>10&ndash;11:45am &mdash; Open Waltz &mdash; Peregrine Road</li>
+                            <li>10&ndash;11:45am &mdash; Open Waltz &mdash; Hotline Strings</li>
                             <li>12:30&ndash;2:00pm &mdash; Contra Workshop &mdash; Wild Asparagus &amp; George
                                 Marshall
                             </li>
-                            <li>2:30&ndash;4:45pm &mdash; Contra Dance &mdash; Peregrine Road &amp;</li>
+                            <li>2:30&ndash;4:45pm &mdash; Contra Dance &mdash; Hotline Strings & Glen Morningstar Jr. &amp;</li>
                             <li>8&ndash;11:30pm &mdash; Contra Dance &mdash; Wild Asparagus &amp; George Marshall</li>
                         </ul>
                     </li>
@@ -88,8 +90,8 @@
                         Marshall
                     </li>
                     <li>&nbsp;</li>
-                    <li><a href="https://drive.google.com/open?id=1eGzKN23AH7Btov1wg1SUdFkeQCCq5_sq" target='_blank'>Download
-                            the 2018 schedule</a></li>
+                    <li><a href="https://docs.google.com/spreadsheets/d/1f0sAxXeyQJiOLXbT6DX3HK12TAyBsnyc4JrKfhgnMUg/export?format=pdf" target='_blank'>Download
+                            the 2019 schedule</a></li>
                 </ul>
             </div>
         </div>
@@ -97,7 +99,7 @@
 
         <div class="content">
             <ul>
-                <li><a href='registration.html' target="_blank">Register in advance to save money.</a> . All mail in
+                <li><a href='/tts/registration' target="_blank">Register in advance to save money.</a> . All mail in
                     registrations will be
                     accepted if received by Friday 10/25. On line registration will be open until noon on Friday 10/25.
                 </li>
@@ -142,14 +144,14 @@
                         nearby</a></li>
                 <li>Questions: <a href="mailto:tts@aactmad.org">tts@aactmad.org</a> or call 734 677-0212.
                 </li>
-                <li>Tree Town Stomp - <a href="https://drive.google.com/open?id=1hRSpRfKFPoDqvctgs56-j2vEme8nTTzZ">Past
+                <li>Tree Town Stomp - <a href="https://drive.google.com/open?id=1-QlKrsQ6ihQokJSesJBLngWrZYtEOYyrYC89Dn1y86M">Past
                         and future</a></li>
             </ul>
         </div>
 
         <div class="has-text-centered">
             <p class="title">
-                <a target="_blank" href="https://drive.google.com/open?id=1PJQS7vDoPGszfja_g-3pMQWdgXxuQBFJ">Register
+                <a target="_blank" href="https://drive.google.com/open?id=1u_kNJlcbBLQ5YpuhBleUwyBaJhmkdZUb">Register
                     now via mail. Download flyer
                     here.</a>
             </p>

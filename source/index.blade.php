@@ -25,24 +25,47 @@
             <coming-events-container></coming-events-container>
         </div>
 
-        <div class="columns">
-            <div class="column is-2">
-                <div class="buttons">
-                    <a class="button is-danger is-fullwidth" href="/events/">
+        <div class="level is-mobile">
+            <div class="level-item has-text-centered">
+                <a class="button is-danger is-fullwidth is-small" href="/events/">
                     <span class="icon">
                       <i class="far fa-calendar-alt"></i>
-                    </span> <span>Find an Event</span> </a> <a class="button is-info is-fullwidth" href="/membership">
+                    </span> <span>Find an Event</span> </a>
+            </div>
+            <div class="level-item has-text-centered">
+                <a class="button is-info is-fullwidth is-small" href="/membership">
                     <span class="icon">
                       <i class="fas fa-users"></i>
                     </span> <span>Support</span>
-                    </a> <a class="button is-primary is-fullwidth"
-                                                                 href="/email.lists/">
+                </a>
+            </div>
+            <div class="level-item has-text-centered">
+                <a class="button is-primary is-fullwidth is-small"
+                   href="/email.lists/">
                     <span class="icon">
                       <i class="far fa-envelope-open"></i>
                     </span> <span>Join an Email List</span> </a>
-                </div>
             </div>
-            <div class="column is-10" style="order: -1;">
+        </div>
+
+        <div class="columns">
+            {{--<div class="column is-2">--}}
+                {{--<div class="buttons">--}}
+                    {{--<a class="button is-danger is-fullwidth" href="/events/">--}}
+                    {{--<span class="icon">--}}
+                      {{--<i class="far fa-calendar-alt"></i>--}}
+                    {{--</span> <span>Find an Event</span> </a> <a class="button is-info is-fullwidth" href="/membership">--}}
+                    {{--<span class="icon">--}}
+                      {{--<i class="fas fa-users"></i>--}}
+                    {{--</span> <span>Support</span>--}}
+                    {{--</a> <a class="button is-primary is-fullwidth"--}}
+                                                                 {{--href="/email.lists/">--}}
+                    {{--<span class="icon">--}}
+                      {{--<i class="far fa-envelope-open"></i>--}}
+                    {{--</span> <span>Join an Email List</span> </a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            <div class="column is-12" style="order: -1;">
                 <div class="columns">
                     <div class="column is-6">
                         <div class="card">

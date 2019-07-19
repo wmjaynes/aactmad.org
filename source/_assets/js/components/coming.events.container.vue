@@ -2,7 +2,7 @@
     <div>
         <div v-if="eventsToDisplay.length > 0">
             Coming Special Events:
-            <div class="columns is-multiline">
+            <div class="columns is-multiline is-centered">
                 <div class="column is-6" v-for="event in eventsToDisplay">
                     <a :href="event.moreInfoUrl">
                         <figure class="image is-3by1">

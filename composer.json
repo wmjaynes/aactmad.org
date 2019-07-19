@@ -1,5 +1,11 @@
 {
     "require": {
-        "tightenco/jigsaw": "^1.2"
+        "tightenco/jigsaw": "^1.2",
+        "mailgun/mailgun-php": "^2.8",
+        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/psr7": "^1.6",
+        "php-http/message": "^1.7",
+        "kriswallsmith/buzz": "^1.0",
+        "nyholm/psr7": "^1.1"
     }
 }
