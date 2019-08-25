@@ -1,4 +1,10 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
+
+use Aactmad\Amail;
+$amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
 
@@ -27,22 +33,20 @@ identified by the same item number as above.
 
 EOD;
 
-$to = "registration@aactmad.org";
-$fromemail = "registration@aactmad.org";
-$fromname = "AACTMAD Membership";
+$to = "registration@aactmad.org, will@jaynes.org";
 $subject = $testing."AACTMAD Membership: Item#: ";
 $subject .= $item_number;
 
-$headers = "From: ".$fromname." <".$fromemail.">\r\n";
-$headers .= "Reply-To: ".$fromname." <".$fromemail.">\r\n";
-//$headers .= "To: ".$to."\r\n";
-$headers .= "X-Mailer: PHP/".phpversion();
-
 $message .= print_r($payload, true);
 
-$mailed = false;
+$mailed = true;
 try {
-    $mailed = mail($to,$subject,$message,$headers);
+    $amail->send([
+        'from' => 'AACTMAD Membership <registration@aactmad.org>',
+        'to' => $to,
+        'subject' => $subject,
+        'text' => $message
+    ]);
 } catch (Exception $e) {
     $mailed = false;
 }
@@ -93,7 +97,12 @@ AACTMAD Membership Committee
 
 EOD;
 
-mail($to, $subject, $message, $headers);
+$amail->send([
+    'from' => 'AACTMAD Membership <registration@aactmad.org>',
+    'to' => $to,
+    'subject' => $subject,
+    'text' => $message
+]);
 
 
 

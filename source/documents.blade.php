@@ -159,10 +159,10 @@
                 <ul>
                     <li><a href="https://drive.google.com/open?id=0Bz2GhOdCxtlHVWl3RDhBNVdneGs" target='_blank'>990
                             Forms</a></li>
-                    <li>Income and Expense form: <a href="word_docs/Income_Expense_form 2012.doc">MS Word</a> or <a
-                                href="pdfs/Income_Expense_form 2012.pdf"
+                    <li>Income and Expense form: <a href="https://assets.aactmad.org/pdfs/Income_Expense_form 2012.doc">MS Word</a> or <a
+                                href="https://assets.aactmad.org/pdfs/Income_Expense_form 2012.pdf"
                         >PDF</a></li>
-                    <li><a href="pdfs/POB_Income_Expense_form.pdf">POB Income and Expense form</a></li>
+                    <li><a href="https://assets.aactmad.org/pdfs/POB_Income_Expense_form.pdf">POB Income and Expense form</a></li>
                 </ul>
 
                 <p>

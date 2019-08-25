@@ -29,7 +29,6 @@ mix
     .version()
 ;
 
-mix.copy('vendor/mailgun', 'vvvendor', false);
 
 if (mix.inProduction()) {
     mix.version();

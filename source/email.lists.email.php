@@ -1,11 +1,10 @@
 <?php
-require 'env.php';
 require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 
-use Mailgun\Mailgun;
-
-$mailgun = Mailgun::create(getenv('MAILGUN_API_KEY'));
-$domain = "mg.aactmad.org";
+use Aactmad\Amail;
+$amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
 
@@ -40,8 +39,8 @@ foreach ($lists as $list) {
     $too .= $adminEmail[$list] . ', ';
     $plists .= $list . "\n";
 }
-$too .= "will@jaynes.org";
-//$too = "will@jaynes.org";
+//$too .= "will@jaynes.org";
+$too = "will@jaynes.org";
 
 $message = <<<EOD
 $testing $testing $testing $testing $testing
@@ -60,9 +59,10 @@ EOD;
 
 
 $mailed = true;
+$exception = null;
 
 try {
-    $mailgun->messages()->send($domain, [
+    $amail->send([
         'from' => 'AACTMAD Email Lists <do.not.reply@aactmad.org>',
         'to' => $too,
         'subject' => 'AACTMAD Email List Subscription',
@@ -70,6 +70,7 @@ try {
     ]);
 } catch (Exception $e) {
     $mailed = false;
+    $exception = $e;
 }
 
 if ($mailed)
@@ -84,6 +85,8 @@ try {
         fwrite($file, "****** Mail TO Email List Admins WAS NOT SUCCESSFULL ********\n");
         fwrite($file, "*****************************************************\n");
     }
+//    fwrite($file, print_r($exception, true));
+//    fwrite($file, $amail->dump());
     fwrite($file, $message);
     fclose($file);
 } catch (Exception $e) {

@@ -4,4 +4,4 @@
 /vendor/
 /source/images/
 /source/assets/build/
-/source/env.php
+/source/.env

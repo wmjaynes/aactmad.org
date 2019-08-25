@@ -51,9 +51,9 @@
                     <div class="card-content">
                         <div class="content has-text-centered">
                             <a href='/volunteer' target='_blank' style='font-size: 1em; font-style: italic;'>Please
-                                Volunteer to Make it Happen - Sign up here</a></a><br/> <br/> or <br/> <br/>
+                                Volunteer to Make it Happen - Sign up here</a><br/> <br/> or <br/> <br/>
                             <a href="mailto:volunteer@aactmad.org?subject=Dancing in the Streets Volunteer">E-mail for
-                                more information.</a>
+                                more information. <br> volunteer@aactmad.org</a>
 
                         </div>
                     </div>

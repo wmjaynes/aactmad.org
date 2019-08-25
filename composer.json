@@ -7,5 +7,10 @@
         "php-http/message": "^1.7",
         "kriswallsmith/buzz": "^1.0",
         "nyholm/psr7": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aactmad\\":"build_local/php/"
+        }
     }
 }
