@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/php/Amail.php';
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
@@ -39,8 +40,8 @@ foreach ($lists as $list) {
     $too .= $adminEmail[$list] . ', ';
     $plists .= $list . "\n";
 }
-//$too .= "will@jaynes.org";
-$too = "will@jaynes.org";
+$too .= "will@jaynes.org";
+//$too = "will@jaynes.org";
 
 $message = <<<EOD
 $testing $testing $testing $testing $testing
