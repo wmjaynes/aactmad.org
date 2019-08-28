@@ -1,11 +1,16 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/php/Amail.php';
+$dotenv = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+use Aactmad\Amail;
+
+$amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
 
-$YEAR = '2019';
-$DATES = 'March 22 - 23';
-
-$registrations = json_decode(file_get_contents('php://input'));
+$payload = json_decode(file_get_contents('php://input'));
 
 $testing = "";
 $serverName = $_SERVER['SERVER_NAME'];
@@ -13,9 +18,14 @@ if ($serverName != "aactmad.org") {
     $testing = " *TEST* ";
 }
 
+$ts = date("Y-m-d H:i:s");
+
+$YEAR = $payload->Year;
+$DATES = $payload->Dates;
+
+$registrations = $payload->Registrations;
 $name = $registrations[0]->name;
 
-$ts = date("Y-m-d H:i:s");
 $message = <<<EOD
 $testing $testing
 Timestamp: $ts
@@ -27,41 +37,42 @@ from PayPal.
 EOD;
 
 $to = "mis@aactmad.org";
+//$to = "will@jaynes.org";
 $fromemail = "mis@aactmad.org";
 $fromname = "Melt Into Spring Registrar";
 
-$subject = $testing.$name." - Melt Into Spring ".$YEAR." Registration";
-
-$headers = "From: ".$fromname." <".$fromemail.">\r\n";
-$headers .= "Reply-To: ".$fromname." <".$fromemail.">\r\n";
-//$headers .= "To: ".$to."\r\n";
-$headers .= "X-Mailer: PHP/".phpversion();
+$subject = $testing . $name . " - Melt Into Spring " . $YEAR . " Registration";
 
 $message .= print_r($registrations, true);
 
 $mailed = true;
 try {
-    $mailed = mail($to,$subject,$message,$headers);
+    $amail->send([
+        'from' => "{$fromname} <{$fromemail}>",
+        'to' => $to,
+        'subject' => $subject,
+        'text' => $message
+    ]);
 } catch (Exception $e) {
     $mailed = false;
 }
 
-$regfile = 'mis.registration.txt';
-try {
-    $file = fopen($regfile, 'a');
-    fwrite($file, "\n\n$testing---------------- '.$name.' -------------\n");
-    if (! $mailed) {
-        fwrite($file, "*****************************************************\n");
-        fwrite($file, "****** Mail TO REGISTRAR WAS NOT SUCCESSFULL ********\n");
-        fwrite($file, "*****************************************************\n");
+if (!$mailed) {
+    $regfile = 'mis.registration.txt';
+    try {
+        $file = fopen($regfile, 'a');
+        fwrite($file, "\n\n$testing---------------- '.$name.' -------------\n");
+        if (!$mailed) {
+            fwrite($file, "*****************************************************\n");
+            fwrite($file, "****** Mail TO REGISTRAR WAS NOT SUCCESSFULL ********\n");
+            fwrite($file, "*****************************************************\n");
+        }
+        fwrite($file, $message);
+        //	fwrite($file, print_r($_POST, true));
+        fclose($file);
+    } catch (Exception $e) {
     }
-    fwrite($file, $message);
-    //	fwrite($file, print_r($_POST, true));
-    fclose($file);
-} catch (Exception $e) {
 }
-
-//exit("ending");
 
 foreach ($registrations as $reg) {
     $as = "";
@@ -86,7 +97,7 @@ foreach ($registrations as $reg) {
 
     $amtdue = $reg->total;
 
-    $subject = $testing."Melt Into Spring ".$YEAR." registration";
+    $subject = $testing . "Melt Into Spring $YEAR registration";
     $to = $reg->email;
 
     $message = <<<EOD
@@ -95,7 +106,7 @@ Dear Dancer,
 
 On behalf of AACTMAD, thank you for registering for Melt Into Spring, ${DATES}, ${YEAR}.
 
-You have registered{$as} ${for}. $dinner
+You have registered{$as} {$for}. $dinner
 
 Your total for the weekend is \${$amtdue}. 
 
@@ -112,11 +123,15 @@ aactmad.org/melt-into-spring
 EOD;
 
     try {
-        mail($to, $subject, $message, $headers);
+        $amail->send([
+            'from' => "{$fromname} <{$fromemail}>",
+            'to' => $to,
+            'subject' => $subject,
+            'text' => $message
+        ]);
     } catch (Exception $e) {
     }
 }
-
 
 
 ?>

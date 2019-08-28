@@ -1,10 +1,11 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/php/Amail.php';
-$dotenv = Dotenv\Dotenv::create(__DIR__);
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/php/Amail.php';
+$dotenv = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
 use Aactmad\Amail;
+
 $amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
@@ -21,7 +22,6 @@ $ts = date("Y-m-d H:i:s");
 $item_number = $payload->ItemNumber;
 
 
-
 $message = <<<EOD
 $testing $testing
 Timestamp: $ts
@@ -35,7 +35,7 @@ identified by the same item number as above.
 EOD;
 
 $to = "registration@aactmad.org, will@jaynes.org";
-$subject = $testing."AACTMAD Membership: Item#: ";
+$subject = $testing . "AACTMAD Membership: Item#: ";
 $subject .= $item_number;
 
 $message .= print_r($payload, true);
@@ -52,27 +52,26 @@ try {
     $mailed = false;
 }
 
-try {
-    $regfile = 'memberships.txt';
-    $file = fopen($regfile, 'a');
-    fwrite($file, "\n\n$testing---------------- '.$item_number.' -------------\n");
-    if (! $mailed) {
+if (!$mailed) {
+    try {
+        $regfile = 'memberships.txt';
+        $file = fopen($regfile, 'a');
+        fwrite($file, "\n\n$testing---------------- '.$item_number.' -------------\n");
         fwrite($file, "*****************************************************\n");
         fwrite($file, "****** Mail TO MEMBERSHIP WAS NOT SUCCESSFULL ********\n");
         fwrite($file, "*****************************************************\n");
+        fwrite($file, $message);
+        //	fwrite($file, print_r($_POST, true));
+        fclose($file);
+    } catch (Exception $e) {
     }
-    fwrite($file, $message);
-    //	fwrite($file, print_r($_POST, true));
-    fclose($file);
-} catch (Exception $e) {
 }
-
 
 
 $category = $payload->Category->Description;
 $value = $payload->Category->Value;
 
-$subject = $testing."AACTMAD Membership";
+$subject = $testing . "AACTMAD Membership";
 $to = $payload->Names[0]->email;
 
 $message = <<<EOD
@@ -104,7 +103,6 @@ $amail->send([
     'subject' => $subject,
     'text' => $message
 ]);
-
 
 
 ?>

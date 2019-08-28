@@ -205,6 +205,8 @@
     const MEMBER = 75;
     const NONMEMBER = 80;
     const UNDER25 = 50;
+    const YEAR = 2019;
+    const DATES = 'October 25-27';
 
     class Registration {
         constructor() {
@@ -240,6 +242,8 @@
                 uid: 0,
                 total: 0,
                 registrations: [],
+                year: YEAR,
+                dates: DATES,
             }
         },
         validations: {
@@ -304,6 +308,8 @@
                     ItemNumber: this.itemNumber,
                     Total: this.totalCost,
                     Registrations: this.registrations,
+                    Year: this.year,
+                    Dates: this.dates,
                 }
             },
             doLogging() {
@@ -317,7 +323,7 @@
             },
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                return axios.post('/tts/reg.email.php', this.registrations, {headers: headers});
+                return axios.post('/php/tts.email.php', this.assembleMessage(), {headers: headers});
             },
             submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');

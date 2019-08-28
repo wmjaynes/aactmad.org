@@ -167,7 +167,7 @@
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
                 let message = this.assembleMessage();
-                return axios.post('/email.lists.email.php', message, {headers: headers});
+                return axios.post('/php/email.lists.email.php', message, {headers: headers});
             },
             processMembership() {
                 let log = this.doLogging();

@@ -1,19 +1,16 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/php/Amail.php';
-$dotenv = Dotenv\Dotenv::create(__DIR__);
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/php/Amail.php';
+$dotenv = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
 use Aactmad\Amail;
+
 $amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
 
 $payload = json_decode(file_get_contents('php://input'));
-
-$name = $payload->Name;
-$email = $payload->Email;
-$lists = $payload->Lists;
 
 $testing = "";
 $serverName = $_SERVER['SERVER_NAME'];
@@ -23,8 +20,9 @@ if ($serverName != "aactmad.org") {
 
 $ts = date("Y-m-d H:i:s");
 
-
-//Your credentials
+$name = $payload->Name;
+$email = $payload->Email;
+$lists = $payload->Lists;
 
 
 $adminEmail = [
@@ -74,23 +72,20 @@ try {
     $exception = $e;
 }
 
-if ($mailed)
-    exit;
-
-try {
-    $regfile = 'email.lists.txt';
-    $file = fopen($regfile, 'a');
-    fwrite($file, "\n\n$testing-----------------------------\n");
-    if (!$mailed) {
-        fwrite($file, "*****************************************************\n");
-        fwrite($file, "****** Mail TO Email List Admins WAS NOT SUCCESSFULL ********\n");
-        fwrite($file, "*****************************************************\n");
+if (!$mailed) {
+    try {
+        $regfile = 'email.lists.txt';
+        $file = fopen($regfile, 'a');
+        fwrite($file, "\n\n$testing-----------------------------\n");
+        if (!$mailed) {
+            fwrite($file, "*****************************************************\n");
+            fwrite($file, "****** Mail TO Email List Admins WAS NOT SUCCESSFULL ********\n");
+            fwrite($file, "*****************************************************\n");
+        }
+        fwrite($file, $message);
+        fclose($file);
+    } catch (Exception $e) {
     }
-//    fwrite($file, print_r($exception, true));
-//    fwrite($file, $amail->dump());
-    fwrite($file, $message);
-    fclose($file);
-} catch (Exception $e) {
 }
 
 

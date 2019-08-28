@@ -1,11 +1,16 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/php/Amail.php';
+$dotenv = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']);
+$dotenv->load();
+
+use Aactmad\Amail;
+
+$amail = new Amail();
 
 date_default_timezone_set('America/Detroit');
 
-$YEAR = '2019';
-$DATES = 'October 25 - 27';
-
-$registrations = json_decode(file_get_contents('php://input'));
+$payload = json_decode(file_get_contents('php://input'));
 
 $testing = "";
 $serverName = $_SERVER['SERVER_NAME'];
@@ -13,9 +18,14 @@ if ($serverName != "aactmad.org") {
     $testing = " *TEST* ";
 }
 
+$ts = date("Y-m-d H:i:s");
+
+$YEAR = $payload->Year;
+$DATES = $payload->Dates;
+
+$registrations = $payload->Registrations;
 $name = $registrations[0]->name;
 
-$ts = date("Y-m-d H:i:s");
 $message = <<<EOD
 $testing $testing
 Timestamp: $ts
@@ -28,41 +38,42 @@ from PayPal.
 EOD;
 
 $to = "tts@aactmad.org";
+//$to = "will@jaynes.org";
 $fromemail = "tts@aactmad.org";
 $fromname = "Tree Town Stomp Registrar";
 
-$subject = $testing.$name." - Tree Town Stomp ".$YEAR." Registration";
-
-$headers = "From: ".$fromname." <".$fromemail.">\r\n";
-$headers .= "Reply-To: ".$fromname." <".$fromemail.">\r\n";
-//$headers .= "To: ".$to."\r\n";
-$headers .= "X-Mailer: PHP/".phpversion();
+$subject = $testing . $name . " - Tree Town Stomp $YEAR Registration";
 
 $message .= print_r($registrations, true);
 
 $mailed = true;
 try {
-    $mailed = mail($to,$subject,$message,$headers);
+    $amail->send([
+        'from' => "{$fromname} <{$fromemail}>",
+        'to' => $to,
+        'subject' => $subject,
+        'text' => $message
+    ]);
 } catch (Exception $e) {
     $mailed = false;
 }
 
-$regfile = 'tts.registration.txt';
-try {
-    $file = fopen($regfile, 'a');
-    fwrite($file, "\n\n$testing---------------- '.$name.' -------------\n");
-    if (! $mailed) {
-        fwrite($file, "*****************************************************\n");
-        fwrite($file, "****** Mail TO REGISTRAR WAS NOT SUCCESSFULL ********\n");
-        fwrite($file, "*****************************************************\n");
+if (!$mailed) {
+    $regfile = 'tts.registration.txt';
+    try {
+        $file = fopen($regfile, 'a');
+        fwrite($file, "\n\n$testing---------------- '.$name.' -------------\n");
+        if (!$mailed) {
+            fwrite($file, "*****************************************************\n");
+            fwrite($file, "****** Mail TO REGISTRAR WAS NOT SUCCESSFULL ********\n");
+            fwrite($file, "*****************************************************\n");
+        }
+        fwrite($file, $message);
+        //	fwrite($file, print_r($_POST, true));
+        fclose($file);
+    } catch (Exception $e) {
     }
-    fwrite($file, $message);
-    //	fwrite($file, print_r($_POST, true));
-    fclose($file);
-} catch (Exception $e) {
 }
-
-//exit("ending");
 
 foreach ($registrations as $reg) {
     $as = " as a non-member";
@@ -74,7 +85,7 @@ foreach ($registrations as $reg) {
     $name = $reg->name;
 
 
-    $subject = $testing."Tree Town Stomp ".$YEAR." registration";
+    $subject = $testing . "Tree Town Stomp $YEAR registration";
     $to = $reg->email;
 
     $message = <<<EOD
@@ -107,11 +118,15 @@ aactmad.org/tts
 EOD;
 
     try {
-        mail($to, $subject, $message, $headers);
+        $amail->send([
+            'from' => "{$fromname} <{$fromemail}>",
+            'to' => $to,
+            'subject' => $subject,
+            'text' => $message
+        ]);
     } catch (Exception $e) {
     }
 }
-
 
 
 ?>

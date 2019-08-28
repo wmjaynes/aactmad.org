@@ -338,7 +338,7 @@
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
                 let message = this.assembleMessage();
 
-                return axios.post('/membership.email.php', message, {headers: headers});
+                return axios.post('/php/membership.email.php', message, {headers: headers});
             },
             submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');

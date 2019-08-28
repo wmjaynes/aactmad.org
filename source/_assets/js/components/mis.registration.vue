@@ -243,9 +243,11 @@
     const FRIDAY = 15;
     const SATURDAY = 37;
 
-    const CLOSE_DINNER_DATE = moment('2019-03-14', 'YYYY-MM-DD');
+    const CLOSE_DINNER_DATE = moment('2019-12-14', 'YYYY-MM-DD');
     const OPEN_REGISTRATION_DATE = moment('2019-01-01', 'YYYY-MM-DD');
-    const CLOSE_REGISTRATION_DATE = moment('2019-03-19', 'YYYY-MM-DD');
+    const CLOSE_REGISTRATION_DATE = moment('2019-12-19', 'YYYY-MM-DD');
+    const YEAR = CLOSE_REGISTRATION_DATE.year();
+    const DATES = 'March 22-23';
 
     class Registration {
         constructor() {
@@ -300,6 +302,8 @@
                 openRegistrationDate: OPEN_REGISTRATION_DATE,
                 closeRegistrationDate: CLOSE_REGISTRATION_DATE,
                 closeDinnerDate: CLOSE_DINNER_DATE,
+                year: YEAR,
+                dates: DATES,
                 isBeforeRegistrationIsOpen: false,
                 isAfterRegistrationIsClosed: false,
                 isAfterDinnerIsClosed: false,
@@ -384,6 +388,8 @@
                     ItemNumber: this.itemNumber,
                     Total: this.totalCost,
                     Registrations: this.registrations,
+                    Year: this.year,
+                    Dates: this.dates,
                 }
             },
             doLogging() {
@@ -397,7 +403,7 @@
             },
             doMailToDancer() {
                 let headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-                return axios.post('/melt-into-spring/reg.email.php', this.registrations, {headers: headers});
+                return axios.post('/php/melt.into.spring.email.php', this.assembleMessage(), {headers: headers});
             },
             submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');
