@@ -35,7 +35,7 @@
                         contra dance musicianship. We hire an experienced dance musician to lead us when we play for
                         dances.</p>
 
-                    <p><a href="mailto:info@aactmad.org?subject=POB info">Contact us by email</a> or phone 734-994-9307.
+                    <p><a href="mailto:pob@aactmad.org?subject=POB info">Contact us by email at pob@aactmad.org</a> or phone 734-994-9307.
                     </p>
 
                     <p>

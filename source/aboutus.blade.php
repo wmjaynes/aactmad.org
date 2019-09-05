@@ -87,13 +87,11 @@
 
                 <p style="margin: 5px 0 0 30px">
                     Pat Micks, Rental Manager <br/>
-                    Giovanni Griswold, Facility Manager <br/>
-                    Catherine Kendall, Chair and Board Liaison <br/>
                     Sylvia Hobart, Treasurer <br/>
-                    Gretchen Preston<br/>
                     Greg Meisner <br/>
                     Will Jaynes <br/>
                     Hal Breidenbach <br/>
+                    Gretchen Preston<br/>
                     Email:
                     <a href="mailto:facilities@aactmad.org">facilities@aactmad.org</a> <br/> Phone: 872-222-8623
                 </p>

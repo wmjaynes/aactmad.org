@@ -78,7 +78,7 @@
                     <div class="card-content">
                         <div class="content">
                             <ul>
-                                <li><a href="/events?orgId=829"><strong>AACTMAD First Saturday Contra</strong> at
+                                <li><a href="https://events.aactmad.org?orgId=829"><strong>AACTMAD First Saturday Contra</strong> at
                                         Pittsfield Union Grange</a>
                                 </li>
                                 <li><a href="/2ndsat"><strong>AACTMAD 2<sup>nd</sup> Saturday Contra</strong> at Concourse Hall</a>
