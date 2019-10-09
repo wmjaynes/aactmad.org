@@ -27,43 +27,50 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td class='price student'>Students</td>
+                <td class='price student'>Student</td>
+                <td class='price'>Door</td>
             </tr>
             <tr>
                 <td>All dances and catered dinner <i class="fas fa-asterisk fa-xs"></i></td>
-                <td class='price'>$78</td>
-                <td class='price student'>$53</td>
+                <td class='price'>$80</td>
+                <td class='price student'>$54</td>
+                <td class='price'>N/A</td>
             </tr>
             <tr>
                 <td>All dances, not including dinner</td>
-                <td class='price'>$50</td>
-                <td class='price student'>$25</td>
+                <td class='price'>$52</td>
+                <td class='price student'>$26</td>
+                <td class='price'>$60</td>
             </tr>
 
             <tr>
                 <td>Saturday dances and catered dinner <i class="fas fa-asterisk fa-xs"></i></td>
-                <td class='price'>$65</td>
-                <td class='price student'>$46.50</td>
+                <td class='price'>$66</td>
+                <td class='price student'>$47</td>
+                <td class='price'>N/A</td>
             </tr>
             <tr>
                 <td>Saturday dances, not including dinner</td>
-                <td class='price'>$37</td>
-                <td class='price student'>$18.50</td>
+                <td class='price'>$38</td>
+                <td class='price student'>$19</td>
+                <td class='price'>$42</td>
+            </tr>
+            <tr>
+                <td>Saturday practice only</td>
+                <td class='price'>$14</td>
+                <td class='price student'>$7</td>
+                <td class='price'>$15</td>
             </tr>
             <tr>
                 <td>Friday night dance</td>
-                <td class='price'>$15</td>
-                <td class='price student'>$7.50</td>
-            </tr>
-            <tr>
-                <td>Saturday practice only (at the door)</td>
-                <td class='price'>$13</td>
-                <td class='price student'>$6.50</td>
+                <td class='price'>$16</td>
+                <td class='price student'>$8</td>
+                <td class='price'>$18</td>
             </tr>
 
             <tr>
                 <td colspan='3'><i class="fas fa-asterisk fa-xs"></i> <strong>Important: </strong>To
-                    include dinner, registration must be received by March 14.</td>
+                    include dinner, registration must be received by March 19.</td>
             </tr>
         </table>
 

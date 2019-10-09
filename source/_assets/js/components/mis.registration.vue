@@ -1,28 +1,25 @@
 <template>
     <div v-cloak>
         <div class="notification is-warning">
-            Online registration opens: {{openRegistrationDate.format('MMM Do YYYY') }}.
-            <br>
-            Online registration closes after: {{ closeRegistrationDate.format('MMM Do YYYY') }}.
-            <br>
-            Dinner reservations are closed after: {{ closeDinnerDate.format('MMM Do YYYY') }}.
+            Online registration opens: {{openRegistrationDate.format('MMM Do YYYY') }}. <br> Online registration closes
+            after: {{ closeRegistrationDate.format('MMM Do YYYY') }}. <br> Dinner reservations are closed after: {{
+            closeDinnerDate.format('MMM Do YYYY') }}.
         </div>
         <div class="notification is-danger" v-if="(isBeforeRegistrationIsOpen)">
-            Online registration is not yet open. Check back after {{ openRegistrationDate.format('MMM Do YYYY')
-            }}.
+            Online registration is not yet open. Check back after {{ openRegistrationDate.format('MMM Do YYYY') }}.
         </div>
         <div class="notification is-danger" v-if="(isAfterRegistrationIsClosed)">
             Online registration is now closed. See you on the dance floor.
         </div>
 
         <form @submit.prevent="processRegistration()">
-            <button type="submit"
-                    v-if="(registrationIsOpen && !$v.$invalid)"
-                    class="button is-info">Ready to pay with PayPal
+            <button class="button is-info"
+                    type="submit"
+                    v-if="(registrationIsOpen && !$v.$invalid)">Ready to pay with PayPal
             </button>
-            <button type="button"
-                    v-if="(!registrationIsOpen || $v.$invalid)"
-                    class="button is-danger">Not Ready to pay
+            <button class="button is-danger"
+                    type="button"
+                    v-if="(!registrationIsOpen || $v.$invalid)">Not Ready to pay
             </button>
 
             <div class="message is-success">
@@ -33,12 +30,12 @@
                 <div class="invalid" v-if="$v.total.$invalid">Total can not be zero.</div>
             </div>
 
-            <div class="box" v-for="(reg, index) in $v.registrations.$each.$iter" :key="reg.$model.id">
+            <div :key="reg.$model.id" class="box" v-for="(reg, index) in $v.registrations.$each.$iter">
 
-                        <span class="icon is-small is-pulled-left is-danger destroy"
-                              v-if="registrations.length > 1 && reg.$model.id > 0"
-                              @click="removeReg(reg)"
-                              title="Remove registration">
+                        <span @click="removeReg(reg)"
+                              class="icon is-small is-pulled-left is-danger destroy"
+                              title="Remove registration"
+                              v-if="registrations.length > 1 && reg.$model.id > 0">
                             <i class="far fa-trash-alt"></i>
                         </span>
 
@@ -50,9 +47,9 @@
                     <div class="field-body">
                         <div class="field">
                             <p class="control  has-icons-left">
-                                <input class="input " :class="{invalid: reg.name.$invalid }"
-                                       type="text"
+                                <input :class="{invalid: reg.name.$invalid }" class="input "
                                        placeholder="Full Name"
+                                       type="text"
                                        v-model.trim="reg.name.$model"
                                 >
                                 <span class="icon is-small is-left"><i class="fas fa-user"></i>
@@ -62,9 +59,9 @@
                         </div>
                         <div class="field">
                             <p class="control  has-icons-left ">
-                                <input class="input" :class="{invalid: reg.email.$invalid }"
-                                       type="email"
+                                <input :class="{invalid: reg.email.$invalid }" class="input"
                                        placeholder="Email"
+                                       type="email"
                                        v-model.trim="reg.email.$model"
                                 >
                                 <span class="icon is-small is-left">
@@ -89,25 +86,25 @@
                         <div class="field ">
                             <div class="control">
                                 <label class="checkbox">
-                                    <input type="checkbox"
+                                    <input class="cost"
                                            name="student"
-                                           class="cost"
+                                           type="checkbox"
                                            v-model="reg.$model.student">
                                     Student |
                                 </label>
                                 <label class="checkbox">
-                                    <input type="checkbox"
+                                    <input class="cost"
                                            name="weekend-full"
-                                           class="cost"
+                                           type="checkbox"
                                            v-model="reg.$model.weekendDancing">
                                     Full Weekend, dancing |
                                 </label>
                                 <label class="checkbox">
-                                    <input type="checkbox"
-                                           name="dinner"
+                                    <input :disabled="dinnerIsClosed"
                                            class="cost"
-                                           v-model="reg.$model.dinner"
-                                           :disabled="dinnerIsClosed">
+                                           name="dinner"
+                                           type="checkbox"
+                                           v-model="reg.$model.dinner">
                                     Dinner
                                 </label>
                             </div>
@@ -122,21 +119,51 @@
                         <div class="field ">
                             <div class="control">
                                 <label class="checkbox">
-                                    <input type="checkbox"
-                                           name="friday"
+                                    <input
                                            class="cost"
+                                           name="Friday"
+                                           type="checkbox"
                                            v-model="reg.$model.friday">
                                     Friday Dancing |
                                 </label>
                                 <label class="checkbox">
-                                    <input type="checkbox"
+                                    <input class="cost"
                                            name="Saturday"
-                                           class="cost"
-                                           v-model="reg.$model.saturday">
+                                           type="checkbox"
+                                           v-model="reg.$model.saturday"
+                                    >
                                     Saturday Dancing
                                 </label>
                             </div>
                             <div class="invalid" v-if="reg.total.$invalid">Must choose some option(s).</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">Dinning preference</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field ">
+                            <div class="control">
+                                <label class="radio">
+                                    <input :disabled="!reg.$model.dinner"
+                                           name="meal"
+                                           type="radio"
+                                           v-model="reg.$model.meal"
+                                           value="Vegetarian">
+                                    Vegetarian |
+                                </label>
+                                <label class="radio">
+                                    <input :disabled="!reg.$model.dinner"
+                                           name="meal"
+                                           type="radio"
+                                           v-model="reg.$model.meal"
+                                           value="Omnivore">
+                                    Omnivore
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,8 +176,8 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="text" name="phone" style="width: 10em"
-                                       placeholder="Phone Number"
+                                <input class="input" name="phone" placeholder="Phone Number" style="width: 10em"
+                                       type="text"
                                        v-model="reg.$model.phone">
                             </div>
                         </div>
@@ -164,8 +191,8 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="text" name="street"
-                                       placeholder="Street Address"
+                                <input class="input" name="street" placeholder="Street Address"
+                                       type="text"
                                        v-model="reg.$model.street">
                             </div>
                         </div>
@@ -180,7 +207,7 @@
 
                         <div class="control">
                             <p class="control is-expanded ">
-                                <input class="input" type="text" name="city" v-model="reg.$model.city">
+                                <input class="input" name="city" type="text" v-model="reg.$model.city">
                             </p>
                         </div>
                         <div class="field-label">
@@ -188,7 +215,7 @@
                         </div>
                         <div class="control">
                             <p class="control is-expanded ">
-                                <input class="input" type="text" name="state" v-model="reg.$model.state">
+                                <input class="input" name="state" type="text" v-model="reg.$model.state">
                             </p>
                         </div>
                         <div class="field-label">
@@ -196,7 +223,7 @@
                         </div>
                         <div class="control">
                             <p class="control is-expanded ">
-                                <input class="input" type="text" name="zip" v-model="reg.$model.zip">
+                                <input class="input" name="zip" type="text" v-model="reg.$model.zip">
                             </p>
                         </div>
                     </div>
@@ -207,22 +234,22 @@
         </form>
 
 
-        <input class='button is-info' type="submit" value="Add another registration..."
-               @click.prevent="addReg">
+        <input @click.prevent="addReg" class='button is-info' type="submit"
+               value="Add another registration...">
 
         <div class="hidden">
-            <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                <input type="hidden" name="cmd" value="_xclick">
+            <form action="https://www.paypal.com/cgi-bin/webscr" id="paypalForm" method="post">
+                <input name="cmd" type="hidden" value="_xclick">
 
-                <input type="hidden" id="amount" name="amount" value="10">
-                <input type="hidden" name="item_name" value="Melt Into Spring 2019 Registration"/>
-                <input type="hidden" id="item_number" name="item_number" value="123456"/>
+                <input id="amount" name="amount" type="hidden" value="10">
+                <input name="item_name" type="hidden" value="Melt Into Spring 2019 Registration"/>
+                <input id="item_number" name="item_number" type="hidden" value="123456"/>
 
-                <input type="hidden" name="business" value="paypal@aactmad.org"/>
-                <input type="hidden" name="return" value="https://aactmad.org/melt-into-spring"/>
-                <input type="hidden" name="cancel_return" value="https://aactmad.org/melt-into-spring"/>
-                <input type="hidden" name="rm" value="2"/>
-                <input type="hidden" name="currency_code" value="USD">
+                <input name="business" type="hidden" value="paypal@aactmad.org"/>
+                <input name="return" type="hidden" value="https://aactmad.org/melt-into-spring"/>
+                <input name="cancel_return" type="hidden" value="https://aactmad.org/melt-into-spring"/>
+                <input name="rm" type="hidden" value="2"/>
+                <input name="currency_code" type="hidden" value="USD">
                 <input type="submit" value="Pay with PayPal"/>
             </form>
         </div>
@@ -235,19 +262,20 @@
 <script>
     import axios from 'axios';
     import moment from 'moment';
+
     const findIndex = require('lodash.findindex');
     const {required, minLength, email, minValue} = require('vuelidate/lib/validators')
 
     const DINNER = 28;
-    const WEEKEND = 50;
-    const FRIDAY = 15;
-    const SATURDAY = 37;
+    const WEEKEND = 52;
+    const FRIDAY = 16;
+    const SATURDAY = 38;
 
-    const CLOSE_DINNER_DATE = moment('2019-12-14', 'YYYY-MM-DD');
+    const CLOSE_DINNER_DATE = moment('2020-03-19', 'YYYY-MM-DD');
     const OPEN_REGISTRATION_DATE = moment('2019-01-01', 'YYYY-MM-DD');
-    const CLOSE_REGISTRATION_DATE = moment('2019-12-19', 'YYYY-MM-DD');
+    const CLOSE_REGISTRATION_DATE = moment('2020-04-23', 'YYYY-MM-DD');
     const YEAR = CLOSE_REGISTRATION_DATE.year();
-    const DATES = 'March 22-23';
+    const DATES = 'March 27-28';
 
     class Registration {
         constructor() {
@@ -265,18 +293,22 @@
             this.zip = '';
             this.phone = '';
             this.total = 0;
+            this.meal = 'Omnivore';
 
             this.regCost = function () {
+                console.log("in regCost: " + this.id);
                 let total = 0;
                 let dancing = 0;
                 let dinner = this.dinner ? DINNER : 0;
-                if (this.weekendDancing) {
-                    this.friday = this.saturday = false;
-                }
+                if (!this.dinner) this.meal = null;
+                if (this.dinner && this.meal == null) this.meal = "Omnivore";
+
+                if (this.friday || this.saturday)
+                    this.weekendDancing = false;
                 if (this.friday && this.saturday) {
                     this.weekendDancing = true;
-                    this.friday = this.saturday = false;
                 }
+
                 if (this.weekendDancing)
                     dancing = WEEKEND;
                 else {
@@ -284,9 +316,13 @@
                     dancing += this.saturday ? SATURDAY : 0;
                 }
                 if (this.student)
-                    dancing = dancing/2;
+                    dancing = dancing / 2;
 
                 this.total = dancing + dinner;
+                if (this.total == 0) {
+                    this.friday = this.saturday = false;
+                    console.log(`total = 0 : friday=${this.friday} : sat=${this.saturday}`);
+                }
                 return this.total;
             };
             this.setId = function (lid) {
@@ -429,7 +465,7 @@
             },
         },
         filters: {
-            toCurrency: function(value) {
+            toCurrency: function (value) {
                 if (typeof value !== "number") {
                     return value;
                 }

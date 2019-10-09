@@ -52,9 +52,9 @@
                 <div>
                     <p class="is-size-2-mobile">- Melt Into Spring -</p>
                     <p class="is-size-2-mobile">English Country Dance Ball</p>
-                    <p class="is-size-3">Dances led by Beverly Francis</p>
+                    <p class="is-size-3">Dances led by Joanna Reiner</p>
                     <p class="is-size-4">Music by Debbie Jackson, Earl Gaddis, and Matt McCoy</p>
-                    <p class="is-size-3">March 22–23, 2019</p>
+                    <p class="is-size-3">March 27–29, 2020</p>
                 </div>
             </div>
         </nav>
@@ -65,24 +65,24 @@
 
 
         <div class="box is-transparent margin20">
-            <p class="has-text-centered title is-3">Weekend Schedule 2019</p>
+            <p class="has-text-centered title is-3">Weekend Schedule 2020</p>
+
             <div class="content">
                 <ul>
-                    <li>Friday: English Dance &mdash; 8:00-11:00 &mdash; $15</li>
+                    <li>Friday: English Dance &mdash; 8:00-11:00</li>
                     <li>Saturday
                         <ul>
                             <li>Ball Practice &mdash; 1:00-3:30 &mdash; included with the ball</li>
                             <ul>
-                                <li>Highly recommended, there will be minimal teaching at the ball. ($13 at the door for
-                                    practice only)
+                                <li>Highly recommended, there will be minimal teaching at the ball.
                                 </li>
                             </ul>
-                            <li>Catered Dinner &mdash; 6:00 &mdash; (optional &mdash; reserve by March 14)
+                            <li>Catered Dinner &mdash; 6:00 &mdash; (optional &mdash; reserve by March 19)
                             </li>
                             <ul>
                                 <li>Gather at 6:00 for wine, punch and appetizers. Dinner at 6:30.</li>
                             </ul>
-                            <li>Ball &mdash; 8:00-11:30 &mdash; $37 ($42 at the door) including ball practice</li>
+                            <li>Ball &mdash; 8:00-11:30</li>
                             <ul>
                                 <li>Attire: your version of Period / Elegant / Dressy / Interesting</li>
                                 <li>If you wish, bring refreshments to share at the break.</li>
@@ -90,7 +90,6 @@
 
                         </ul>
                     </li>
-                    <li class="has-text-weight-bold">Catered Dinner & All Dances &mdash; $78</li>
                     <li>Sunday: Potluck brunch 10:30-12:30
                         <ul>
                             <li>Please bring a dish to share if you can. Maps at the dances.</li>
@@ -102,20 +101,20 @@
         </div>
 
         <h4 class="box">
-            Out-of-towners welcome; for home hospitality or any other
-            questions: Call Greg at 734-717-8253 or email <a
+            Out-of-towners welcome; for home hospitality or any other questions: Call Greg at 734-717-8253 or email <a
                     href='mailto:mis@aactmad.org'>mis@aactmad.org</a>
         </h4>
 
         <div class="has-text-centered">
-            <p class="title">
-                <a target="_blank" href="https://assets.aactmad.org/pdfs/melt.into.spring.2019.pdf">Register
-                    now via mail. Download flyer here.</a>
-            </p>
-            <p class="title">
-                <a href="/melt-into-spring/registration">Register on line here.</a>
-
-            </p></div>
+                <p class="title">
+                    <a target="_blank" href="https://assets.aactmad.org/pdfs/melt.into.spring.2020.pdf">Register now via
+                        mail. Download flyer here.</a>
+                </p>
+                <p class="title">
+                    <a href="/melt-into-spring/registration">Register on line here.</a>
+{{--                <p class="title">Online registration not yet open.</p>--}}
+                </p>
+        </div>
 
 
     </div>
