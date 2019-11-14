@@ -1,4 +1,5 @@
 <?php
+
 require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/php/Amail.php';
 $dotenv = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']);
@@ -84,15 +85,19 @@ foreach ($registrations as $reg) {
     else
         $dinner = "You have not registered for the catered dinner.";
     $for = "for ";
-    if ($reg->weekendDancing)
+    if (!$reg->weekendDancing && !$reg->friday && !$reg->saturday && !$reg->practice)
+        $for .= "No dancing sessions";
+    elseif ($reg->weekendDancing || ($reg->friday && $reg->saturday))
         $for .= "the full weekend of dancing";
     else {
         if ($reg->friday)
             $for .= " Friday evening";
-        if ($reg->friday && $reg->saturday)
-            $for .= " and";
         if ($reg->saturday)
-            $for .= " Saturday ball and workshop";
+            $for .= " Saturday ball and practice";
+        if ($reg->friday && $reg->practice)
+            $for .= " and Saturday practice";
+        elseif ($reg->practice)
+            $for .= " just Saturday practice";
     }
 
     $amtdue = $reg->total;

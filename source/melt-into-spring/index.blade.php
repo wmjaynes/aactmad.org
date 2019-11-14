@@ -112,7 +112,7 @@
                 </p>
                 <p class="title">
                     <a href="/melt-into-spring/registration">Register on line here.</a>
-{{--                <p class="title">Online registration not yet open.</p>--}}
+{{--                <p class="title">Online registration not open at this time.</p>--}}
                 </p>
         </div>
 

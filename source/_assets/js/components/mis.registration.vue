@@ -27,7 +27,7 @@
                     Total: $ <span class="total-amount">{{ totalCost | toCurrency }}</span>
                 </div>
 
-                <div class="invalid" v-if="$v.total.$invalid">Total can not be zero.</div>
+<!--                <div class="invalid" v-if="$v.total.$invalid">Total can not be zero.</div>-->
             </div>
 
             <div :key="reg.$model.id" class="box" v-for="(reg, index) in $v.registrations.$each.$iter">
@@ -90,15 +90,9 @@
                                            name="student"
                                            type="checkbox"
                                            v-model="reg.$model.student">
-                                    Student |
-                                </label>
-                                <label class="checkbox">
-                                    <input class="cost"
-                                           name="weekend-full"
-                                           type="checkbox"
-                                           v-model="reg.$model.weekendDancing">
-                                    Full Weekend, dancing |
-                                </label>
+                                    Student
+                                </label> <br />
+
                                 <label class="checkbox">
                                     <input :disabled="dinnerIsClosed"
                                            class="cost"
@@ -115,16 +109,25 @@
                     <div class="field-label">
                         <label class="label"></label>
                     </div>
+                    Dancing: &nbsp;
                     <div class="field-body">
                         <div class="field ">
+
                             <div class="control">
+                                <label class="checkbox">
+                                    <input class="cost"
+                                           name="weekend-full"
+                                           type="checkbox"
+                                           v-model="reg.$model.weekendDancing">
+                                    Full Weekend |
+                                </label>
                                 <label class="checkbox">
                                     <input
                                            class="cost"
                                            name="Friday"
                                            type="checkbox"
                                            v-model="reg.$model.friday">
-                                    Friday Dancing |
+                                    Friday |
                                 </label>
                                 <label class="checkbox">
                                     <input class="cost"
@@ -132,24 +135,33 @@
                                            type="checkbox"
                                            v-model="reg.$model.saturday"
                                     >
-                                    Saturday Dancing
+                                    Saturday |
+                                </label>
+                                <label class="checkbox">
+                                    <input class="cost"
+                                           name="Practice"
+                                           type="checkbox"
+                                           v-model="reg.$model.practice"
+                                    >
+                                    Practice
                                 </label>
                             </div>
-                            <div class="invalid" v-if="reg.total.$invalid">Must choose some option(s).</div>
+                            <div class="invalid" v-if="reg.atLeastOneIsChecked.$invalid">
+                                Must choose at least one dancing/dinner option.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="field is-horizontal">
                     <div class="field-label">
-                        <label class="label">Dinning preference</label>
+                        <label class="label">Dining preference</label>
                     </div>
                     <div class="field-body">
                         <div class="field ">
                             <div class="control">
                                 <label class="radio">
                                     <input :disabled="!reg.$model.dinner"
-                                           name="meal"
+                                           name="Meal"
                                            type="radio"
                                            v-model="reg.$model.meal"
                                            value="Vegetarian">
@@ -157,12 +169,13 @@
                                 </label>
                                 <label class="radio">
                                     <input :disabled="!reg.$model.dinner"
-                                           name="meal"
+                                           name="Meal"
                                            type="radio"
                                            v-model="reg.$model.meal"
                                            value="Omnivore">
                                     Omnivore
                                 </label>
+                                <br /> Chosen: {{reg.$model.meal}}
                             </div>
                         </div>
                     </div>
@@ -264,18 +277,21 @@
     import moment from 'moment';
 
     const findIndex = require('lodash.findindex');
-    const {required, minLength, email, minValue} = require('vuelidate/lib/validators')
+    const {required, minLength, email, minValue, helpers} = require('vuelidate/lib/validators')
 
     const DINNER = 28;
     const WEEKEND = 52;
     const FRIDAY = 16;
     const SATURDAY = 38;
+    const PRACTICE = 14;
 
     const CLOSE_DINNER_DATE = moment('2020-03-19', 'YYYY-MM-DD');
-    const OPEN_REGISTRATION_DATE = moment('2019-01-01', 'YYYY-MM-DD');
+    const OPEN_REGISTRATION_DATE = moment('2019-11-01', 'YYYY-MM-DD');
     const CLOSE_REGISTRATION_DATE = moment('2020-04-23', 'YYYY-MM-DD');
     const YEAR = CLOSE_REGISTRATION_DATE.year();
     const DATES = 'March 27-28';
+
+    const requiredTrue = (value) => value;
 
     class Registration {
         constructor() {
@@ -287,43 +303,43 @@
             this.student = false;
             this.friday = false;
             this.saturday = false;
+            this.practice = false;
+            this.atLeastOneIsChecked = true;
             this.street = '';
             this.city = '';
             this.state = '';
             this.zip = '';
             this.phone = '';
-            this.total = 0;
             this.meal = 'Omnivore';
 
+            this.total = 0;
+
             this.regCost = function () {
-                console.log("in regCost: " + this.id);
                 let total = 0;
                 let dancing = 0;
                 let dinner = this.dinner ? DINNER : 0;
-                if (!this.dinner) this.meal = null;
-                if (this.dinner && this.meal == null) this.meal = "Omnivore";
 
-                if (this.friday || this.saturday)
-                    this.weekendDancing = false;
-                if (this.friday && this.saturday) {
-                    this.weekendDancing = true;
-                }
-
-                if (this.weekendDancing)
+                if (this.weekendDancing || (this.friday && this.saturday))
                     dancing = WEEKEND;
-                else {
+                else if (this.friday || this.saturday) {
                     dancing += this.friday ? FRIDAY : 0;
                     dancing += this.saturday ? SATURDAY : 0;
                 }
+                if (this.practice && !(this.weekendDancing || this.saturday))
+                    dancing += PRACTICE;
                 if (this.student)
                     dancing = dancing / 2;
 
-                this.total = dancing + dinner;
-                if (this.total == 0) {
-                    this.friday = this.saturday = false;
-                    console.log(`total = 0 : friday=${this.friday} : sat=${this.saturday}`);
-                }
-                return this.total;
+                total = dancing + dinner;
+
+                let chk = this.dinner ||  this.weekendDancing || this.saturday || this.friday || this.practice;
+                if (this.atLeastOneIsChecked != chk)
+                    this.atLeastOneIsChecked = chk;
+
+                if (this.total != total)
+                    this.total = total;
+
+                return total;
             };
             this.setId = function (lid) {
                 this.id = lid;
@@ -344,7 +360,6 @@
                 isAfterRegistrationIsClosed: false,
                 isAfterDinnerIsClosed: false,
                 uid: 0,
-                total: 0,
                 registrations: [],
                 itemNumber: 0,
             }
@@ -361,16 +376,12 @@
                         required,
                         email,
                     },
-                    total: {
-                        required,
-                        minValue: minValue(1)
+                    atLeastOneIsChecked: {
+                        requiredTrue
                     }
                 }
             },
-            total: {
-                required,
-                minValue: minValue(1)
-            }
+
         },
         mounted() {
             let reg = new Registration();
@@ -397,7 +408,7 @@
                 let total = this.registrations.reduce((acc, curr) => {
                     return acc + curr.regCost();
                 }, 0);
-                this.total = total;
+                // this.total = total;
                 return total;
             },
         },
@@ -444,7 +455,7 @@
             submitToPayPal() {
                 let paypalForm = document.getElementById('paypalForm');
                 let amount = document.getElementById('amount');
-                amount.value = this.total;
+                amount.value = this.totalCost;
                 let item_number = document.getElementById('item_number');
                 item_number.value = this.registrations[0].name + " " + new Date().toLocaleString();
                 paypalForm.submit();

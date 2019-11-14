@@ -5,8 +5,8 @@
             <div class="columns is-multiline is-centered">
                 <div class="column is-6" v-for="event in eventsToDisplay">
                     <a :href="event.moreInfoUrl">
-                        <figure class="image is-3by1">
-                            <img :src="event.bannerUrl">
+                        <figure class="image " style="max-height: 200px">
+                            <img :src="event.bannerUrl" style="max-height: 200px">
                         </figure>
                     </a>
                 </div>
@@ -35,7 +35,7 @@
         },
         methods: {
             getComingEventsJson() {
-                axios.get('https://assets.aactmad.org/coming.events.json')
+                axios.get('https://assets.aactmad.org/coming.events.test.json')
                     .then((response) => {
                         this.coming = response.data;
                         this.getEventsToDisplay();
