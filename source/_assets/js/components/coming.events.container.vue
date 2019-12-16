@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="eventsToDisplay.length > 0">
-            Coming Special Events:
+            Special Announcements:
             <div class="columns is-multiline is-centered">
                 <div class="column is-6" v-for="event in eventsToDisplay">
                     <a :href="event.moreInfoUrl">
@@ -35,7 +35,7 @@
         },
         methods: {
             getComingEventsJson() {
-                axios.get('https://assets.aactmad.org/coming.events.test.json')
+                axios.get('https://assets.aactmad.org/coming.events.json')
                     .then((response) => {
                         this.coming = response.data;
                         this.getEventsToDisplay();

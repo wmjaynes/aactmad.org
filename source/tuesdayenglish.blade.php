@@ -20,18 +20,11 @@
                 </figure>
                 <h1 class="title">Tuesday English Country Dancing</h1>
 
-                <div id="venueNotice" class="notification is-danger is-invisible">
-                    <p class="subtitle">NOTICE: Temporary Change of Venue</p>
-                    <p>January - March 2019<br>
-                        Gretchen's House Child Care Center Oak Valley, 2340 Oak Valley Drive, Ann Arbor MI, 48103</p>
-                    <a href="https://goo.gl/maps/HrkfeM5qfws" target="_blank">MAP</a>
-                </div>
-
                 <div class="box content">
-                    <p>Ann Arbor's Tuesday English country dance, now in its <span id="nthyear">XXth</span> year, welcomes beginners and
-                        experienced dancers. We offer <strong>live music</strong>, friendly informal
-                        <strong>instruction</strong>, an intimate acoustic setting, a <strong>wood floor</strong>, and a
-                        wonderful community of dancers. It’s great fun.
+                    <p>Ann Arbor's Tuesday English country dance, now in its <span id="nthyear">XXth</span> year,
+                        welcomes beginners and experienced dancers. We offer <strong>live music</strong>, friendly
+                        informal <strong>instruction</strong>, an intimate acoustic setting, a <strong>wood
+                            floor</strong>, and a wonderful community of dancers. It’s great fun.
                     </p>
                     <ul>
                         <li>Every Tuesday night at Chapel Hill Condominium Clubhouse.</li>
@@ -107,7 +100,10 @@
                                        href="https://drive.google.com/open?id=0Bz2GhOdCxtlHU2dvZ0FOc2dCTnc">Dances
                                         called since 2004</a></li>
 
+                                <li><a target="_blank"
+                                        href="https://dancesdone.aactmad.org">Dances called (experimental web site)</a>
                                 </li>
+
                                 <li><a href="https://assets.aactmad.org/pdfs/ECT_leaders.pdf">Index of Tuesday Night
                                         Leaders.</a>(for pre 09-10 seasons)
                                 </li>
@@ -127,7 +123,9 @@
     </div>
 
     <script>
-        function nth(n){return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
+        function nth(n) {
+            return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th"
+        }
 
         let begin = moment('1984-09-01', 'YYYY-MM-DD');
         let now = moment();
@@ -136,12 +134,6 @@
         let nthyear = document.getElementById('nthyear');
         nthyear.innerHTML = diffStr;
 
-        let end = moment('2019-04-01', 'YYYY-MM-DD');
-        let element = document.getElementById("venueNotice");
-        if (now.isBefore(end))
-            element.classList.remove('is-invisible');
-        if (now.isAfter(end))
-            element.parentNode.removeChild(element);
     </script>
 
 
