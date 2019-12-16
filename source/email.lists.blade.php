@@ -21,6 +21,13 @@
 
         <email-lists></email-lists>
 
+        <div class="notification box">
+            <strong>Pittsfield Open Band</strong> : To join the POB email list,
+            please visit <a href="https://groups.io/g/POBmusicians" target="_blank">the POB group announcement site</a>
+            at Groups.io.
+
+        </div>
+
     </div>
 
     <script src="{{ mix('js/vue.js', 'assets/build') }}"></script>

@@ -97,11 +97,7 @@
 
         </form>
 
-        <div class="notification box">
-            <strong>Pittsfield Open Band</strong> : To join the POB email list, sign up at their
-            <a target="_blank" href="http://groups.yahoo.com/group/POBmembers/">Yahoo group</a>
-            .
-        </div>
+
 
 
     </div>

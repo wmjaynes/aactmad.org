@@ -24,10 +24,10 @@
                     <p></p>
 
                     <p>
-                        Our jams are held once or twice a month,
-                        usually on the first and third Saturdays from 3pm to 6pm. Rehearsals are 4pm to 6pm on
-                        afternoons before an evening gig. See the <a href="/events/">AACTMAD events calendar</a> for
-                        specific times and dates. We meet at the Pittsfield Grange, 3337 Ann Arbor-Saline Road, &frac12;
+                        Our jams are held once or twice a month, usually on the first and third Saturdays from 3pm to
+                        6pm. Rehearsals are 4pm to 6pm on afternoons before an evening gig. See the <a href="/events/">AACTMAD
+                            events calendar</a> for specific times and dates. We meet at the Pittsfield Grange, 3337 Ann
+                        Arbor-Saline Road, &frac12;
                         mile south of I-94 exit 175, in Ann Arbor.
                     </p>
 
@@ -35,17 +35,17 @@
                         contra dance musicianship. We hire an experienced dance musician to lead us when we play for
                         dances.</p>
 
-                    <p><a href="mailto:pob@aactmad.org?subject=POB info">Contact us by email at pob@aactmad.org</a> or phone 734-994-9307.
+                    <p><a href="mailto:pob@aactmad.org?subject=POB info">Contact us by email at pob@aactmad.org</a> or
+                        phone 734-994-9307.
                     </p>
 
                     <p>
-                        To join our e-mail list, please visit <a href="http://groups.yahoo.com/group/POBmembers/"
-                                                                 target="_blank">our group announcement site.</a> To
-                        join, register with Yahoo Groups; it's free.
+                        To join our e-mail list, please visit <a href="https://groups.io/g/POBmusicians"
+                                                                 target="_blank">the POB group announcement site</a> at
+                        Groups.io.
                     </p>
 
                 </div>
-
 
 
             </div>
