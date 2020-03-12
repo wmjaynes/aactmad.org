@@ -42,6 +42,9 @@
     <div id="tree" class="tree container">
 
 
+        <div class="notification is-danger">
+            We are sorry to announce that Melt Into Spring is CANCELLED. Registants will receive a full refund.
+        </div>
         <nav id="tree-header" class="level ">
             <div class="level-item has-text-centered">
                 <figure class="image">
@@ -58,6 +61,9 @@
                 </div>
             </div>
         </nav>
+        <div class="notification is-danger">
+            We are sorry to announce that Melt Into Spring is CANCELLED. Registants will receive a full refund.
+        </div>
 
         <div class="has-text-centered is-transparent subtitle">
             For dancers familiar with ECD figures
@@ -111,7 +117,7 @@
                         mail. Download flyer here.</a>
                 </p>
                 <p class="title">
-                    <a href="/melt-into-spring/registration">Register on line here.</a>
+                    <a  >Register on line here.</a>
 {{--                <p class="title">Online registration not open at this time.</p>--}}
                 </p>
         </div>

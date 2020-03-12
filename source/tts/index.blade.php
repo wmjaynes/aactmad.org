@@ -57,9 +57,9 @@
             <div class="level-item has-text-centered">
                 <div>
                     <p class="is-size-2-mobile">Tree Town Stomp</p>
-                    <p class="is-size-2-mobile">Caller: George Marshall</p>
-                    <p class="is-size-2-mobile">Band: Wild Asparagus</p>
-                    <p class="is-size-3">October 25-27 2019</p>
+                    <p class="is-size-2-mobile">Caller: Will Mentor</p>
+                    <p class="is-size-2-mobile">Band: Free Raisins</p>
+                    <p class="is-size-3">October 23-25 2020</p>
                 </div>
             </div>
         </nav>
@@ -68,11 +68,12 @@
             A full weekend of contra dance (and waltz)
         </div>
         <div class="has-text-centered is-transparent subtitle has-text-weight-bold">
-            Additional talent: Glen Morningstar Jr. and Hotline Strings
+            Additional talent: TBD
         </div>
 
         <div class="box is-transparent margin20">
-            <p class="has-text-centered title is-3">Weekend Schedule</p>
+            <p class="has-text-centered title is-3">Weekend Schedule 2019</p>
+            <p class="has-text-centered title is-3">schedule for 2020 will be similar</p>
             <div class="content">
                 <ul>
                     <li>Friday &mdash; 8&ndash;11:30pm &mdash; Wild Asparagus &amp; George Marshall</li>
@@ -97,11 +98,12 @@
         </div>
 
 
+        <p class="has-text-centered title is-3">Info below is for 2019. 2020 will be similar.</p>
         <div class="content">
             <ul>
                 <li><a href='/tts/registration' target="_blank">Register in advance to save money.</a> . All mail in
                     registrations will be
-                    accepted if received by Friday 10/25. On line registration will be open until noon on Friday 10/25.
+                    accepted if received by Friday 10/23. On line registration will be open until noon on Friday 10/23.
                 </li>
 
                 <!--

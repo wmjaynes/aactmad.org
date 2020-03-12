@@ -21,6 +21,11 @@
         <h1 class="title">Scholarships and Grants</h1>
 
         <p class="box">
+            <strong>Special Opportunity:</strong> Special scholarships available for Dance, Music & Spice at Camp
+            Cavell. Contact Greg Meisner at  <a href="mailto:gpmeisner@hotmail.com">gpmeisner@hotmail.com</a>.
+
+        </p>
+        <p class="box">
             AACTMAD's Scholarships & Grants Program exists to promote the enjoyment of traditional dance, music, and
             song by encouraging individuals to participate in local, regional, and national activities and thereby
             enriching their lives and sense of community through these experiences. These scholarships and grants are
@@ -39,27 +44,13 @@
                     <a href="https://drive.google.com/open?id=1ihw8CtdQl9e6gABthVVH0vy-g8ttNILV" target="_blank">Application
                         Form</a>
                 </dd>
-                <dt>CDSS at Camp Cavell Scholarship: EXTENDED DEADLINE - MAY 31</dt>
-                <dd>
-                    This new scholarship provides members of the AACTMAD dance community an opportunity to participate
-                    in the exciting new CDSS week-long <a target="_blank"
-                                                          href="http://www.cdss.org/programs/dance-music-song-camps/camp-weeks/spice">
-                        Dance, Music, and Spice program at Camp Cavell </a> , Michigan. The intent is to provide funds
-                    to those who might not otherwise be able to come to camp. Applications from AACTMAD members received
-                    by May 31, 2016, will be processed first, and those applicants will be notified of their scholarship
-                    status in early June. All funds may be assigned at that time, but non-AACTMAD member applicants and
-                    all applications received after May 31 will be considered if funds are still available. The form
-                    should be send electronically to Greg Meisner (gpmeisner@hotmail.com) and Fred Karsch
-                    (fjkarsch@umich.edu).
-                    <a href="https://drive.google.com/open?id=0Bz2GhOdCxtlHbWx0ampqTDZlOUZacEhnd2FwNlBRcHo2SVdJ"
-                       target="_blank">Application Form</a>
-                </dd>
 
                 <dt>Membership Scholarships</dt>
                 <dd>
                     These scholarships introduce non-member individuals to our community-based organization of
                     traditional music, dance, and song by providing benefits of a one-year AACTMAD regular membership.
-                    <a href="https://drive.google.com/open?id=1tIRfMikLmoQS9yuG80lfctxwj-VGGb5o" target="_blank">Application Form</a>
+                    <a href="https://drive.google.com/open?id=1tIRfMikLmoQS9yuG80lfctxwj-VGGb5o" target="_blank">Application
+                        Form</a>
                 </dd>
                 <dt>Individual Grants</dt>
                 <dd>

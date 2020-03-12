@@ -24,6 +24,8 @@ $name = $payload->Name;
 $email = $payload->Email;
 $lists = $payload->Lists;
 
+$email = strtoupper($email);
+
 
 $adminEmail = [
     "contra" => "hellmann@umich.edu",
