@@ -96,7 +96,7 @@
                         <table class="table">
                             <thead>
                             <tr class="has-text-weight-bold">
-                                <td colspan="3">Wedsnesday Night Swing</td>
+                                <td colspan="3">Swing Ann Arbor</td>
                             </tr>
                             </thead>
                             <tbody>
