@@ -8,27 +8,32 @@
         "watch": "npm run local -- --watch"
     },
     "devDependencies": {
-        "browser-sync": "^2.26.3",
-        "browser-sync-webpack-plugin": "^2.0.1",
-        "cross-env": "^3.2.3",
+        "browser-sync": "^2.26.12",
+        "browser-sync-webpack-plugin": "^2.2.2",
+        "cross-env": "^7.0.2",
         "hasbin": "^1.2.3",
-        "laravel-mix": "^2.1.14",
-        "moment-locales-webpack-plugin": "^1.0.7",
+        "moment-locales-webpack-plugin": "^1.2.0",
         "node-cmd": "^3.0.0",
         "on-build-webpack": "^0.1.0",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.26.10",
+        "sass-loader": "^8.0.2",
         "webpack-watch": "^0.2.0",
-        "yargs": "^4.6.0"
+        "yargs": "^15.4.1",
+        "chokidar": "^3.4.2",
+        "braces": "^3.0.2"
     },
     "dependencies": {
-        "axios": "^0.18.0",
-        "bulma": "^0.7.4",
-        "bulmaswatch": "^0.7.2",
-        "jquery": "^3.3.1",
+        "axios": ">=0.19.2",
+        "bulma": "^0.9.0",
+        "bulmaswatch": "^0.8.1",
+        "jquery": "^3.5.1",
+        "laravel-mix": "^5.0.4",
         "lodash.findindex": "^4.6.0",
-        "moment": "^2.24.0",
-        "query-string": "^6.4.0",
-        "vue": "^2.6.9",
-        "vue-template-compiler": "^2.6.9",
-        "vuelidate": "^0.7.4"
+        "moment": "^2.27.0",
+        "query-string": "^6.13.1",
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11",
+        "vuelidate": "^0.7.5"
     }
 }

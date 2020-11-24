@@ -96,5 +96,11 @@
 
         </div>
     </div>
+
 </nav>
+<div class="notification is-danger">
+    NOTICE: Due to the Covid-19 pandemic, most AACTMAD public activities are cancelled
+    until further notice. Some events may take place, following the governor's guidelines
+    for masks and distancing.
+</div>
 

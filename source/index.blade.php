@@ -122,7 +122,7 @@
                                 </header>
                                 <div class="card-image">
                                     <figure class="image">
-                                        <img src="http://www.kissmeinannarbor.com/images/KissME.jpg"
+                                        <img src="https://assets.aactmad.org/images/KissME.jpg"
                                              alt="Image" title="Image by Kenny Schabow">
                                         <figcaption class="small-image-credit">Image by Kenny Schabow</figcaption>
                                     </figure>
